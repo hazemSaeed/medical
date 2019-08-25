@@ -1,0 +1,63 @@
+<div class="container">
+{{#if prescription}}
+  <div id="header1">
+    <h1 class="text-center">View Precreption</h1>
+  </div>
+  <br><br>
+  <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-4">
+                  <div class="card-body">
+                    <img style="height:220px;width: 100%;" class="img-responsive img-rounded img-thumbnail bg-primary" src="/uploads/bg-precreption/{{prescription.image}}" alt="">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                     {{#if user}} 
+                      <div 
+                        class="views" 
+                        data-user="{{user.id}}" 
+                        data-target="{{prescription.id}}">
+                        {{prescription.rating}} 
+                        <i class="fa fa-heart {{rated rating_user prescription.id}}"></i>
+                      </div>
+                      {{else}}
+                      <div 
+                        class="likes">
+                        {{prescription.rating}} 
+                        <i class="fa fa-heart"></i>
+                      </div>
+                     {{/if}}
+                        <h2>{{prescription.title}}</h2>
+                        <p class="o">Category : <b>{{prescription.category.category}}</b></p>
+                        <p style="white-space: pre-line;">{{prescription.description}}</p>
+                        <ul style="padding-left: 15px">
+                          {{#if preparations}}
+                          {{#each preparations}}
+                          <li>
+                          <div class="method">
+                            <h3>{{name}}</h3>
+                            {{#if ingredients}}
+                            <h5><b>Components</b></h5>
+                            <p style="white-space: pre-line;" class="ingredient">{{ingredients}}</p>
+                            {{/if}}
+                            <h5><b>How To Prepare</b></h5>
+                            <p style="white-space: break-spaces">{{howToPrepare}}</p>
+                          </div>
+                          </li>
+                          {{/each}}
+                          {{/if}}
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  {{else}}
+  <p>ID Prescription not exists</p>
+  {{/if}}
+</div>

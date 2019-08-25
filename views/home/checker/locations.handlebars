@@ -1,0 +1,64 @@
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/ajax/render_subloction.js"></script>
+<script type="text/javascript" src="/js/jquery.imagemapster.js"></script>
+
+<div class="container">
+  <div id="header1">
+    <h1 class="text-center">Symptom Checker</h1>
+</div>
+<br>
+    <div class="row setup-content" id="step-2">
+      <div class="col-md-6">
+          <div class="card">
+            <div class="card-body"> 
+              <h2>Choose a location body</h2>
+              <p>Your Age: <mark><b>{{age}}</b></mark> | Your Gender: <mark><b>{{gender}}</b></mark></p>  
+                
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Body</a></li>
+                <li><a data-toggle="tab" href="#menu1">Alpha</a></li>
+              </ul>
+
+              <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                  <h3>Select location</h3>
+
+                  <div id="bodySelector" style="margin: auto;">
+                    <div class="img-responsive" style="clear:both;text-align:center;margin:auto; width:250px;height:300px;">
+                      <img id="male" src="/uploads/humanBody/male.png" width="100%" height="100%" usemap="#body" >
+                    </div>
+                    <button onclick="renderSublocation(17,{{age}},'{{gender}}')" class="btn btn-primary skinButton">Skin, Joints & General</button>
+                  </div>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                  <h3>Select location</h3>
+                  <ul class="list-unstyled"> 
+                  {{#each locations}}
+                    <li><a class="nextBtn" onclick="renderSublocation({{ID}},{{../age}},'{{../gender}}')" id="Location_{{this.ID}}" href="javascript:void(0)">{{this.Name}}</a></li>
+                  {{/each}}
+                  </ul> 
+                </div>
+              </div>
+            </div>    
+          </div>    
+    </div>
+    <section id="subloaction">
+      <div id="element"></div>
+    </section>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+</script>
+	<map id="body_map" name="body">
+    <area target="" onclick="renderSublocation(6,{{age}},'{{gender}}')" name="head" alt="Head, throat & neck" title="Head, throat & neck" href="#" coords="90,46,101,39,101,33,94,27,90,22,91,15,94,10,101,4,108,2,115,1,123,0,133,2,139,3,146,6,150,10,154,17,155,22,151,28,146,32,147,39,162,46" shape="poly">
+    <area target="" onclick="renderSublocation(15,{{age}},'{{gender}}')"name="chest" alt="Chest & back" title="Chest & back" href="#" coords="89,46,73,48,62,49,60,58,59,73,60,84,66,97,73,122,85,114,97,108,111,104,126,104,134,105,141,107,148,109,161,114,180,123,178,107,181,98,184,90,188,75,190,69,190,60,190,49,173,47,161,46" shape="poly">
+    <area target="" onclick="renderSublocation(7,{{age}},'{{gender}}')"name="hands" alt="Arms & shoulder" title="Arms & shoulder" href="#" coords="62,49,60,58,59,66,59,76,60,83,64,94,59,93,55,95,53,103,53,109,51,115,46,123,42,130,45,135,47,144,46,154,40,157,37,161,27,161,23,158,20,151,13,143,7,148,0,148,7,140,13,134,21,129,18,122,21,110,20,100,21,83,23,74,24,63,31,56,40,52,47,51" shape="poly">
+    <area target="" onclick="renderSublocation(7,{{age}},'{{gender}}')"name="hands" alt="Arms & shoulder" title="Arms & shoulder" href="#" coords="190,49,190,70,186,83,183,95,187,92,191,95,197,102,200,110,203,119,206,125,207,131,202,136,202,146,204,154,208,154,213,159,219,161,226,159,235,141,243,147,249,147,240,137,232,132,229,113,231,98,225,73,223,63,217,56,206,52" shape="poly">
+    <area target="" onclick="renderSublocation(16,{{age}},'{{gender}}')"name="abdomen" alt="Abdomen, pelvis & buttocks" title="Abdomen, pelvis & buttocks" href="#" coords="73,122,70,133,67,147,124,152,184,147,180,124,166,117,154,111,143,108,133,105,125,104,111,104,97,108,84,115" shape="poly">
+    <area target="" onclick="renderSublocation(16,{{age}},'{{gender}}')"name="genitals" alt="Genitals or Urinary" title="Genitals or Urinary" href="#" coords="67,147,125,152,184,147,186,157,148,167,125,174,91,164,65,158" shape="poly">
+    <area target="" onclick="renderSublocation(10,{{age}},'{{gender}}')"name="foots" alt="Legs" title="Legs" href="#" coords="65,158,64,169,66,180,69,195,69,205,68,213,66,221,63,229,65,239,67,250,69,266,70,281,65,286,63,293,68,296,79,298,94,296,100,293,97,278,94,265,93,257,97,249,102,238,101,229,100,219,105,211,112,198,115,186,118,179,120,173,93,165" shape="poly">
+    <area target="" onclick="renderSublocation(10,{{age}},'{{gender}}')"name="foots" alt="Legs" title="Legs" href="#" coords="129,173,134,181,137,191,142,202,145,209,149,218,151,224,149,233,149,241,153,248,156,260,154,274,153,281,151,295,155,297,162,297,180,296,185,294,187,292,181,279,179,272,179,259,183,246,185,232,184,218,183,201,184,181,186,166,186,157,154,166" shape="poly">
+	</map>

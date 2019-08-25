@@ -1,0 +1,79 @@
+<section class="content-header">
+    <h1>
+    Medical Prescriptions Table
+    <small>here view all prescriptions</small>
+    </h1>
+    <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Prescriptions</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Prescriptions Data Table</h3>
+                    <a href="/admin/prescriptions/add" class="goToAdd">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="prescriptions_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="prescriptions" class="table table-responsive table-bordered table-hover dataTable" role="grid" aria-describedby="prescriptions_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="prescriptions" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Name</th>
+                                            <th class="sorting" tabindex="0" aria-controls="prescriptions" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Category</th>
+                                            <th class="sorting" tabindex="0" aria-controls="prescriptions" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Image</th>
+                                            <th class="sorting" tabindex="0" aria-controls="prescriptions" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Date</th>
+                                            <th class="sorting" tabindex="0" aria-controls="prescriptions" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Settings</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>     
+                                        {{#each prescriptions}} 
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">{{title}}</td>
+                                            <td>{{category.category}}</td>
+                                            <td><img src="/uploads/bg-precreption/{{image}}" width="30" height="30" alt=""></td>
+                                            <td>{{generateDate published 'DD/MM/YYYY hh:mm:ss'}}</td>
+                                            <td>
+                                                <a href="/admin/prescriptions/edit/{{id}}"><i class="fa fa-edit text-primary"></i></a>
+                                                <a href="javascript:void(0)" onclick="deletePrescription('{{id}}')"><i  class="fa fa-trash text-danger"></i></a>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                <!-- /.box -->
+            </div>
+        <!-- /.col -->
+        </div>
+    </div>
+    
+<!-- /.row -->
+</section>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script>
+    function deletePrescription(id) {
+        $.ajax({
+            type: "POST",
+            url: '/admin/prescriptions/delete',
+            data: {id: id},
+            success: function(){
+                location.reload();
+            }
+        })
+    }
+</script>

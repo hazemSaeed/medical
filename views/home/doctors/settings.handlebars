@@ -1,0 +1,268 @@
+<div class="container">
+    <div class="row">
+  		<div class="col-sm-10"><h1>Settings Profile</h1></div>
+    </div>
+    <br>
+    <div class="row">
+  	    <div class="col-sm-3"><!--left col-->
+          <div class="card">
+           <div class="card-body">   
+            <div class="text-center">
+                <img src="/uploads/users/{{user.image}}" height="192" class="avatar img-circle img-thumbnail" alt="avatar">
+                <h6>Upload a different photo...</h6>
+                <form action="/settings/updateImage/{{user.id}}" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="file" name="image" required accept="image/*" class="text-center center-block file-upload">
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div></hr><br>
+          </div> 
+         </div> 
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#basic">Basic Information</a></li>
+                        <li><a data-toggle="tab" href="#social">Social Media</a></li>
+                        <li><a data-toggle="tab" href="#certificate">Attach Certificate</a></li>
+                        <li><a data-toggle="tab" href="#changepassword">Change Password</a></li>
+                        <li><a data-toggle="tab" href="#manage">Manage Appointment</a></li>
+                        <li><a data-toggle="tab" href="#closeAccount">Close Account</a></li>
+                    </ul>  
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content row"> 
+                        <div class="tab-pane active" id="basic">
+                            <h2 class="text-center">Basic Information</h2>
+                            <hr>
+                            <form class="form" action="/settings/basic/{{user.id}}" method="post">
+                                <div class="form-group">                         
+                                    <div class="col-xs-6">
+                                        <label for="username"><h4>username</h4></label>
+                                        <input readonly value="{{user.username}}" type="text" class="form-control" name="username" id="username" placeholder="username" title="enter your username">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label for="email"><h4>Email</h4></label>
+                                        <input readonly type="email" value="{{user.email}}" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                    </div>
+                                </div>               
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label for="phone"><h4>Phone</h4></label>
+                                        <input type="text" class="form-control" value="{{user.phone}}" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label for="status"><h4>Status</h4></label>
+                                        <input type="text" readonly class="form-control" value="{{user.status}}" name="status" id="status" placeholder="status" title="User {{user.status}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label for="country"><h4>Country</h4></label>
+                                        <input type="text" class="form-control" name="country" value="{{user.country}}" id="country" placeholder="somewhere" title="enter your country if any.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label for="specialty"><h4>Speciality</h4></label>
+                                        <input type="text" class="form-control" name="specialty" value="{{user.speciality}}" id="specialty" placeholder="enter your specialty" title="enter your specialty">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label for="description"><h4>Description</h4></label>
+                                        <textarea class="form-control" style="text-align: left" placeholder="Description" name="description" id="description" >{{user.description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label for="education"><h4>Education</h4></label>
+                                        <textarea class="form-control" style="text-align: left" placeholder="Education" name="education" id="education" >{{user.education}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                            <br>
+                                            <button class="btn btn-lg btn-success" type="submit"><i class="fa fa-check-circle"></i> Save</button>
+                                            <button class="btn btn-lg" type="reset"><i class="fa fa-redo"></i> Reset</button>
+                                        </div>
+                                </div>
+                            </form>
+                            <hr>
+                    
+                        </div><!--/tab-pane-->
+                        <div class="tab-pane" id="social">
+                            <h2 class="text-center">Social Media</h2>
+                            <hr>
+                            <form class="form" action="/settings/links/{{user.id}}" method="post">
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">https://twitter.com</span>
+                                        <input type="text" value="{{user.twitter}}" name="twitter" class="form-control" placeholder="Twitter Profile">
+                                    </div>
+                                    <br>
+                                </div>
+                                
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">https://www.facebook.com/</span>
+                                        <input type="text" value="{{user.facebook}}" name="facebook" class="form-control" placeholder="Facebook Profile">
+                                    </div>
+                                    <br>
+                                </div>
+                                
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Skype</span>
+                                        <input type="text" value="{{user.skype}}" name="skype" class="form-control" placeholder="skype username">
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">https://www.linkedin.com/in/</span>
+                                        <input type="text" value="{{user.linkedin}}" name="linkedin" class="form-control" placeholder="LinkedIn Profile">
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">https://www.instagram.com/</span>
+                                        <input type="text" value="{{user.instagram}}" name="instagram" class="form-control" placeholder="Instagram Profile">
+                                    </div>
+                                    <br>
+                                </div>
+        
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <br>
+                                        <button class="btn btn-lg btn-success" type="submit"><i class="fa fa-check-circle"></i> Save</button>
+                                        <button class="btn btn-lg" type="reset"><i class="fa fa-redo"></i> Reset</button>                            
+                                    </div>
+                                </div>
+                            </form>
+                        
+                        </div><!--/tab-pane-->
+                        <div class="tab-pane" id="certificate">
+                            <h2 class="text-center">Attach Certificate</h2>
+                            <hr>
+                            <form class="form" action="/settings/certificate/{{user.id}}" method="post" enctype="multipart/form-data">
+                                <div class="row" style="display: flex;justify-content: center;align-items: center;">
+                                    {{#if user.attachment}}
+                                    <div class="col-sm-3">
+                                        <img class="img-bordered img-lg img-responsive" style="height: 240px" src="/uploads/attachments/{{user.attachment}}" alt="">
+                                    </div>
+                                    {{/if}}
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                        <label for="uploadcertificate">Upload Attachment</label>
+                                        <input style="padding: 4px 20px" type="file" id="uploadcertificate" name="uploadcertificate" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <br>
+                                        <button class="btn btn-lg btn-success pull-left" type="submit"><i class="fa fa-check-circle"></i> Save</button>
+                                        <button class="btn btn-lg" type="reset"><i class="fa fa-redo"></i> Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="changepassword">  	
+                            <h2 class="text-center">Change Password</h2>
+                            <hr>
+                            <form class="form" action="/settings/changePassword/{{user.id}}" method="post">
+                                <div class="form-group"> 
+                                    <div class="col-md-8 col-xs-6">
+                                        <label for="oldpassword"><h4>Old Password</h4></label>
+                                        <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="old password" title="enter your old password.">
+                                    </div>
+                                </div>
+                                <div class="form-group"> 
+                                    <div class="col-md-8 col-xs-6">
+                                        <label for="newpassword"><h4>New Password</h4></label>
+                                        <input type="password" class="form-control" name="newpassword" id="newpassword" placeholder="new password" title="enter your new password.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-8 col-xs-6">
+                                        <label for="verifypassword"><h4>Verify</h4></label>
+                                        <input type="password" class="form-control" name="verifypassword" id="verifypassword" placeholder="verify password" title="enter verify password.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <br>
+                                        <button class="btn btn-lg btn-success pull-left" type="submit"><i class="fa fa-check-circle"></i> Save</button>
+                                            <button class="btn btn-lg" type="reset"><i class="fa fa-redo"></i> Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="manage">
+                            <h2 class="text-center">Manage Appointments available</h2>
+                            <hr>
+                            <form action="/settings/manage/{{user.id}}" method="post">
+                              <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Days</th>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Holiday</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#if appointments}}   
+                                    {{#each appointments}}
+                                        <tr id="{{id}}">
+                                            <td style="text-transform: capitalize">{{day}}</td>
+                                            <td><input name="from[{{id}}]" {{#if isHoliday}} disabled {{/if}} type="time"  value="{{generateDate from 'HH:mm'}}"></td>
+                                            <td><input name="to[{{id}}]" {{#if isHoliday}} disabled {{/if}} type="time" value="{{generateDate to 'HH:mm'}}"></td>
+                                            <td><input name="holiday[{{id}}]" class="disabledInputs" type="checkbox" data-target="{{id}}" {{check isHoliday true}}></td> 
+                                            <input type="hidden" name="id[]" value="{{id}}">
+                                        </tr>
+                                    {{/each}} 
+                                    {{/if}}
+                                
+                                    </tbody>
+                                </table>
+                              </div>   
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                            <br>
+                                            <button class="btn btn-lg btn-success" type="submit"><i class="fa fa-check-circle"></i> Save</button>
+                                            <button class="btn btn-lg" type="reset"><i class="fa fa-redo"></i> Reset</button>
+                                        </div>
+                                </div>
+                            </form>   
+                        </div>  
+                        <div class="tab-pane" id="closeAccount">
+                            <h2 class="text-center">Close Account</h2>
+                            <hr>
+                            <div class="panel panel-danger">
+                                <div class="panel-body text-center">
+                                    <p>Close Your Account</p>
+                                    <button class="btn btn-danger btn-lg"  data-izimodal-open="#modal-closeAccount">Close Account</button>
+                                </div>
+                            </div>
+                        </div><!--/tab-pane-->
+                    </div>
+                </div>    
+            </div>    
+        </div>
+    </div>                                       
+</div>

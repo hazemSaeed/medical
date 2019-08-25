@@ -1,0 +1,27 @@
+    <div id="modal-login" class="modal-custom" data-iziModal-group="grupo1">
+        <button data-iziModal-close class="icon-close"><i class="fa fa-close"></i></button>
+        <header>
+            <h2>SIGN IN</h2>
+            {{> home/form-msg}}   
+        </header>
+        <section>
+           <form action="/login" method="post">
+                <div class="form-group">
+                    <label for="emailLog">Email</label>
+                    <input id="emailLog" name="email" class="form-control" type="text" placeholder="Enter your Email">
+                </div>
+                <div class="form-group">
+                    <label for="passwordLog">Password</label>
+                    <input id="passwordLog" name="password" class="form-control" type="password" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <label for="remmberme" class="form-check-label"><a href="/reset"> forget password ?</a></label>
+                </div>
+                <footer>
+                    <button data-iziModal-close>Cancel</button>
+                    <button type="submit" class="submit">Log in</button>            
+                </footer>
+          </form>   
+        </section>
+    </div>
+    

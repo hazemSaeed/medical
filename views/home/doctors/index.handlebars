@@ -1,0 +1,75 @@
+<section id="doctorsHead">
+    <div class="container">
+        <h1>Doctors</h1>
+        <div class="breadcrumbDiv">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Doctors</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+  <section id="header1">
+    <div class="container-fluid">
+       <div class="row text-center">
+            <form action="/doctors/search" method="GET" class="pure-form" style="border-top: 1px solid #eee;border-bottom:1px solid #eee;background:#fafafa;margin:30px 0;padding:20px 10px;text-align:center">
+                <div class="form-group text-center">
+                    <label for="email"><h4>Doctor Name, Speciality, Location</h4></label>
+                    <input type="text" autofocus class="form-control" name="q" id="findDoctor" placeholder="find a doctor" title="search for doctor" style="outline:0;width:60%;margin:auto">
+                </div>
+            </form>
+        </div>
+    </div>
+  </section>
+</div>
+
+<section id="about-us" class="no-bottom-padding-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-title mb20">
+                    <p class="text-blue animated bounceInLeft" data-animation="bounceInLeft">Welcome to Medical Care</p>
+                    <h2 class="animated bounceInLeft" data-animation="bounceInLeft">Meet our doctors</h2>
+                </div>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </blockquote>
+                <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p><br>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="/uploads/bg-doctor/doctor-small.png" alt="Doctor Profile">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="meet-doctors-wide" class="grey-bg">
+    <div class="container">
+        <div class="row">
+            {{#each doctors}}
+            <div class="col-md-4">
+                <div class="doctor-box">
+                    <img src="/uploads/users/{{image}}" alt="">
+                    <div class="doctor-box-content">
+                        <a href="/doctors/profile/{{id}}">
+                            <h3>Dr. {{username}}</h3>
+                            <p>{{speciality}}</p>
+                        </a>
+                        <p class="doctor-box-info" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">{{description}}</p><br>
+                        <div class="doctor-social">
+                            {{#if twitter}}<a target="_blank" href="https://twitter.com/{{twitter}}"><i class="fab fa-twitter"></i></a>{{/if}}
+                            {{#if skype}}<a href=""><i title="{{skype}}" class="fab fa-skype"></i></a>{{/if}}
+                            {{#if facebook}} <a target="_blank" href="https://facebook.com/{{facebook}}"><i class="fab fa-facebook"></i></a> {{/if}}
+                            {{#if linkedin}}<a target="_blank" href="https://www.linkedin.com/in/{{linkedin}}"><i class="fab fa-skype"></i></a>{{/if}}
+                            {{#if instagram}}<a target="_blank" href="https://www.instagram.com/{{instagram}}"><i class="fab fa-skype"></i></a>{{/if}}                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+</section>

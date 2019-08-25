@@ -1,0 +1,79 @@
+{{#if user}}
+<div class="container">
+    <section id="header1">
+    <div class="container-fluid">
+       <div class="row text-center">
+        <h1>
+            my profile
+        </h1>
+        <p class="lead parg">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+        </div>
+    </div>
+    </section>
+
+    <section id="main-profile">
+        <div class="row profile">
+           <a href="/settings" class="edit">
+               <span>Edit</span>
+               <i class="fa fa-cog"></i>
+            </a>
+            <div class="col-md-3 img-prof">
+               <a href="" class="img-responsive">
+                <img src="/uploads/users/{{user.image}}" alt="">
+                <div class="overlay">
+                    <i class="fa fa-camera"></i>
+                    <p>Update Profile Photo</p>
+                </div>
+               </a>
+               <h4>{{user.username}}</h4>
+            </div>
+            <div class="col-md-8">
+                <div class="myprof">
+                    <div class="row"> 
+                        <div class="col-md-6">
+                            <div class="prof-info">
+                                <h5 class="title">Status</h5>
+                                <p>{{user.status}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="prof-info">
+                                <h5 class="title">Country</h5>
+                                <p>{{#if user.country}}{{user.country}} {{else}} <a href=""><b>add country</b></a> {{/if}}</p>    
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="prof-info">
+                                <h5 class="title">Phone</h5>
+                                <p>{{#if user.phone}}{{user.phone}} {{else}} <a href=""><b>add phone</b></a> {{/if}}</p>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="prof-info">
+                                <h5 class="title">Email</h5>
+                                <p>{{user.email}}</p>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h5 class="title" >Description</h5>
+                        <p style="white-space: pre-line;line-height: 1px">{{#if user.description}}{{user.description}} {{else}} <a href=""><b>add description</b></a> {{/if}}</p>
+                    </div>
+                    <div class="social">
+                        <h5 class="title">Social Media</h5>
+                        <ul class="list-inline lead">
+                            {{#if user.facebook}}<li><a href="https://www.facebook.com/{{user.facebook}}" target="_blank"><i class="fab fa-facebook"></i></a></li>{{/if}}
+                            {{#if user.twitter}}<li><a href="https://twitter.com/{{user.twitter}}"  target="_blank"><i class="fab fa-twitter"></i></a></li>{{/if}}
+                            {{#if user.linkedin}}<li><a href="https://www.linkedin.com/in/{{user.linkedin}}" target="_blank"><i class="fab fa-linkedin"></i></a></li>{{/if}}
+                            {{#if user.instagram}}<li><a href="https://www.instagram.com/{{user.instagram}}" target="_blank"><i class="fab fa-instagram"></i></a></li>{{/if}}
+                        </ul>
+                    </div>
+                </div>
+                                                                                                                                
+            </div>
+        </div>
+</section>
+</div>
+{{/if}}

@@ -1,0 +1,48 @@
+<div class="container">
+  <div id="header1">
+    <h1 class="text-center">Symptom Checker</h1>
+  </div>
+<br>
+    <div class="row setup-content" id="step-2">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="card">
+            <div class="card-body">
+              <h3>Result Possible Diseases</h3>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    {{#each .}}
+                    {{#Issue}}
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="Issue_{{ID}}">
+                        <h4 class="panel-title">
+                          <a href="javascript:void(0)" id="popupDisease" data-izimodal-open="#modal-disease" onclick="renderDisease({{ID}})" class="pull-left" target="_blank">
+                            {{Name}}
+                          </a>
+                        </h4>
+                        
+                        <a class="collapsed specialisation" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_{{ID}}" aria-expanded="false" aria-controls="collapseOne">
+                          specialisation
+                        </a>
+                      </div>
+                      <div id="collapse_{{ID}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                          <ul class="list-unstyled">
+                            {{#each ../Specialisation}}
+                              <li><a href="javascript:void(0)" id="Specialisation_{{ID}}">{{Name}}</a></li>
+                            {{/each}}
+                          </ul>         
+                        </div>
+                      </div>
+                    </div>
+                    {{/Issue}}
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

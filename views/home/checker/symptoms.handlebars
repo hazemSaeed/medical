@@ -1,0 +1,38 @@
+<div class="container">
+  <div id="header1">
+    <h1 class="text-center">Symptom Checker</h1>
+</div>
+<br>
+    <div class="row setup-content" id="step-2">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="card"> 
+            <div class="card-body">
+            <h2>Choose Symptoms</h2>
+            <p>Your Age: <mark><b>{{age}}</b></mark> | Your Gender: <mark><b>{{gender}}</b></mark></p>  
+            <ul class="list-unstyled"> 
+              <form action="/checkers/causes" method="POST">
+                <div class="row">
+                {{#each symptoms}}
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-check {{#if HasRedFlag}} redFlag  {{/if}}">
+                        <input type="checkbox"  class="form-check-input" value="{{ID}}" name="symptom[]" id="symptom_{{ID}}">
+                        <label class="form-check-label ml-2" for="symptom_{{ID}}">{{Name}}</label>
+                      </div>
+                  </div>
+                {{/each}}
+                </div>
+                <input type="hidden" value="{{age}}" name="age" id="age">
+                <input type="hidden" value="{{gender}}" name="gender" id="gender">
+                <br>
+                <div class="text-center">
+                <button type="submit" class="btn btn-primary">Find Causes</button></div>
+              </form>
+              
+            </ul>
+          </div> 
+        </div>           
+      </div>
+    </div>   
+</div>
+
+<script src="/ajax/render_redFlag.js"></script>

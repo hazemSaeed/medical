@@ -1,0 +1,417 @@
+  <style>
+    .navbar {
+       background: transparent !important;
+        position: absolute;
+    }
+  </style>
+  <!--   Start Header -->
+  {{> home/header}}
+  <!--   End Header -->
+    <main>
+        <div class="container">
+            <div class="scrollmenu" data-tabparent="tabs">
+                
+                <a data-target="#latest_precreptions" href="">Latest Precreptions</a>               
+                {{#each categories}}
+                <a data-target="#{{id}}" href="">{{category}}</a>
+                {{/each}}
+            </div>
+            <section id="latest_precreptions">
+              <div class="demo">
+                  <div class="item">
+                      <img class="prevSlider" src="uploads/bg-home/arrow-prev.png" alt="">
+                      <img class="nextSlider" src="uploads/bg-home/arrow-next.png" alt="">
+                      <ul id="content-slider" class="content-slider">
+                          {{#each latestPrescriptions}}
+                          <li>
+                              <div class="lib-img">
+                                  {{#if ../user}} 
+                              <div 
+                                class="views" 
+                                data-user="{{../user.id}}" 
+                                data-target="{{id}}">
+                                {{rating}} 
+                                <i class="fa fa-heart {{rated ../rating_user id}}"></i>
+                                </div>
+                              {{else}}
+                                <div 
+                                  class="likes">
+                                  {{rating}} 
+                                  <i class="fa fa-heart"></i>
+                                </div>
+                              {{/if}}
+                                  <img src="uploads/bg-precreption/{{image}}" alt="">
+                                  <div class="product-type">
+                                      <h4>{{title}}</h4>
+                                  </div>
+                                  <a href="/prescriptions/view/{{id}}" class="btn btn-default">view</a>
+                              </div>
+                          </li>
+                          {{/each}}
+                          
+                      </ul>
+
+                  </div>
+              </div>
+            </section>
+            <!--            Weight Control-->
+            {{#if weight_control}}
+            <section id="5d4b75225c63fb2040b21295">
+              <div class="row">
+                  <div class="col-lg-12 controll">
+                      Weight Control
+                      <span class="vr"></span>
+                      <div class="slider-contr">
+                          <img class="prev prevcont" src="uploads/bg-home/prev.png" alt="">
+                          <img class="next nextcont" src="uploads/bg-home/next.png" alt="">
+                      </div>
+                  </div>
+              </div>
+              <div class="precreption">
+                  <ul id="controll-slider" class="controll-slider">
+                      {{#each weight_control}}
+                      <li>
+                          <div class="cont-img text-center">
+                            {{#if ../user}} 
+                              <div 
+                                class="views" 
+                                data-user="{{../user.id}}" 
+                                data-target="{{id}}">
+                                {{rating}} 
+                                <i class="fa fa-heart {{rated ../rating_user id}}"></i>
+                                </div>
+                              {{else}}
+                                <div 
+                                  class="likes">
+                                  {{rating}} 
+                                  <i class="fa fa-heart"></i>
+                                </div>
+                              {{/if}}
+                              <img src="/uploads/bg-precreption/{{image}}" alt="">
+                          </div>
+                          <br>
+                          <div class="product-type">
+                              <h4>{{title}}</h4>
+                              <a href="/prescriptions/view/{{id}}" class="btn pull-right"><i class="fa fa-eye"></i> View</a>
+                          </div>
+                          
+                      </li>
+                      {{/each}}
+                      
+                  </ul>
+              </div>
+            </section>
+            {{/if}}
+            <section id="services">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="services text-center">
+                            <div class="img-ser">
+                                <i class="fa fa-calendar-plus-o fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class="con-ser">
+                                <h4>Request Appointments</h4>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="services text-center">
+                            <div class="img-ser">
+                                <i class="fa fa-hospital-o fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class="con-ser">
+                                <h4>Medical Prescriptions</h4>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="services text-center">
+                            <div class="img-ser">
+                                <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class="con-ser">
+                                <h4>Symptoms Checker</h4>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--            Skin Care-->
+            {{#if skin_care}}
+            <section id="5d4b74ff5c63fb2040b21293">
+              <div class="row">
+                  <div class="col-lg-12 controll">
+                          Skin Care
+                      <span class="vr"></span>
+                      <div class="slider-contr">
+                          <img class="prev prevskincare" src="uploads/bg-home/prev.png" alt="">
+                          <img class="next nextskincare" src="uploads/bg-home/next.png" alt="">
+                      </div>
+                  </div>
+              </div>
+              <div class="precreption">
+                  <ul id="skincare-slider" class="skincare-slider">
+                      {{#each skin_care}}
+                      <li>
+                          <div class="cont-img text-center">
+                            {{#if ../user}} 
+                              <div 
+                                class="views" 
+                                data-user="{{../user.id}}" 
+                                data-target="{{id}}">
+                                {{rating}} 
+                                <i class="fa fa-heart {{rated ../rating_user id}}"></i>
+                                </div>
+                              {{else}}
+                                <div 
+                                  class="likes">
+                                  {{rating}} 
+                                  <i class="fa fa-heart"></i>
+                                </div>
+                              {{/if}}
+                              <img src="/uploads/bg-precreption/{{image}}" alt="">
+                          </div>
+                          <br>
+                          <div class="product-type">
+                              <h4>{{title}}</h4>
+                              <a href="/prescriptions/view/{{id}}" class="btn pull-right"><i class="fa fa-eye"></i> View</a>
+                          </div>
+                          
+                      </li>
+                      {{/each}}
+                  </ul>
+              </div>
+            </section>
+            {{/if}}
+            <!-- Skin Problems -->
+            {{#if skin_problem}}
+            <section id="5d4b75295c63fb2040b21296">
+              <div class="row">
+                  <div class="col-lg-12 controll">
+                          Skin Problems
+                      <span class="vr"></span>
+                      <div class="slider-contr">
+                          <img class="prev prevskinproblem" src="uploads/bg-home/prev.png" alt="">
+                          <img class="next nextskinproblem" src="uploads/bg-home/next.png" alt="">
+                      </div>
+                  </div>
+              </div>
+              <div class="precreption">
+                  <ul id="skinproblem-slider" class="skincare-slider">
+                      {{#each skin_problem}}
+                      <li>
+                          <div class="cont-img text-center">
+                              {{#if ../user}} 
+                              <div 
+                                class="views" 
+                                data-user="{{../user.id}}" 
+                                data-target="{{id}}">
+                                {{rating}} 
+                                <i class="fa fa-heart {{rated ../rating_user id}}"></i>
+                                </div>
+                              {{else}}
+                                <div 
+                                  class="likes">
+                                  {{rating}} 
+                                  <i class="fa fa-heart"></i>
+                                </div>
+                              {{/if}}
+                              <img src="/uploads/bg-precreption/{{image}}" alt="">
+                          </div>
+                          <br>
+                          <div class="product-type">
+                              <h4>{{title}}</h4>
+                              <a href="/prescriptions/view/{{id}}" class="btn pull-right"><i class="fa fa-eye"></i> View</a>
+                          </div>
+                          
+                      </li>
+                      {{/each}} 
+                  </ul>
+              </div>
+            </section>
+            {{/if}}
+            <!-- التواصل الاجتماعي-->
+            <section id="socialMedia">
+              <div class="row text-center">
+                  <div class="col-sm-12 social">
+                      <div class="col-sm-3">
+                          <div class="face socialitem">
+                              <i class="fab fa-facebook-f"></i>
+                              <p>Follow us on Facebook</p>
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="in socialitem">
+                              <i class="fab fa-linkedin-in"></i>
+                              <p>follow us on linked-in</p>
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="twitter socialitem">
+                              <i class="fab fa-twitter"></i>
+                              <p>follow us on twitter</p>
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="insta socialitem">
+                              <i class="fab fa-instagram"></i>
+                              <p>follow us on instagram</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </section>
+            <!--Hair Care -->
+            {{#if hair_care}}
+            <section id="5d4b74fd5c63fb2040b21292">
+              <div class="row">
+                  <div class="col-lg-12 controll">
+                          Hair Care
+                      <span class="vr"></span>
+                      <div class="slider-contr">
+                          <img class="prev prevhearcare" src="uploads/bg-home/prev.png" alt="">
+                          <img class="next nexthearcare" src="uploads/bg-home/next.png" alt="">
+                      </div>
+                  </div>
+              </div>
+              <div class="precreption">
+                  <ul id="hearcare-slider" class="skincare-slider">
+                      {{#each hair_care}}
+                      <li>
+                          <div class="cont-img text-center">
+                           {{#if ../user}} 
+                              <div 
+                                class="views" 
+                                data-user="{{../user.id}}" 
+                                data-target="{{id}}">
+                                {{rating}} 
+                                <i class="fa fa-heart {{rated ../rating_user id}}"></i>
+                                </div>
+                              {{else}}
+                                <div 
+                                  class="likes">
+                                  {{rating}} 
+                                  <i class="fa fa-heart"></i>
+                                </div>
+                              {{/if}}
+                              <img src="/uploads/bg-precreption/{{image}}" alt="">
+                          </div>
+                          <br>
+                          <div class="product-type">
+                              <h4>{{title}}</h4>
+                              <a href="/prescriptions/view/{{id}}" class="btn pull-right"><i class="fa fa-eye"></i> View</a>
+                          </div>
+                          
+                      </li>
+                      {{/each}} 
+                  </ul>
+              </div>
+            </section>
+            {{/if}}
+            <!-- Dispose Of Diseases -->
+            {{#if disposeOfProblem}}
+            <section id="5d4b750c5c63fb2040b21294">
+              <div class="row">
+                  <div class="col-lg-12 controll">
+                          Dispose Of Diseases
+                      <span class="vr"></span>
+                      <div class="slider-contr">
+                          <img class="prev prevdiseases" src="uploads/bg-home/prev.png" alt="">
+                          <img class="next nextdiseases" src="uploads/bg-home/next.png" alt="">
+                      </div>
+                  </div>
+              </div>
+              <div class="precreption">
+                  <ul id="diseases-slider" class="skincare-slider">
+                      {{#each disposeOfProblem}}
+                      <li>
+                          <div class="cont-img text-center">
+                              {{#if ../user}} 
+                              <div 
+                                class="views" 
+                                data-user="{{../user.id}}" 
+                                data-target="{{id}}">
+                                {{rating}} 
+                                <i class="fa fa-heart {{rated ../rating_user id}}"></i>
+                                </div>
+                              {{else}}
+                                <div 
+                                  class="likes">
+                                  {{rating}} 
+                                  <i class="fa fa-heart"></i>
+                                </div>
+                              {{/if}}
+                              <img src="/uploads/bg-precreption/{{image}}" alt="">
+                          </div>
+                          <br>
+                          <div class="product-type">
+                              <h4>{{title}}</h4>
+                              <a href="/prescriptions/view/{{id}}" class="btn pull-right"><i class="fa fa-eye"></i> View</a>
+                          </div>
+                          
+                      </li>
+                      {{/each}} 
+                  </ul>
+              </div>
+            </section>
+            {{/if}}
+            <div class="col-sm-10 col-sm-offset-1">
+                <hr>
+            </div>
+
+            <!-- About Us && Contact Us-->
+            <section id="aboutus">
+              <div class="row">
+                  <div class="col-sm-6">
+                      <div class="aboutus card controll">
+                        <div class="card-body"> 
+                          About Us Medical Care
+                          <p>Lorem ipsum dolor sit, 
+                              amet consectetur adipisicing elit. Laborum, voluptates?
+                               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                               Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quos in 
+                               consequatur autem possimus dolore iste consectetur 
+                               eligendi quisquam accusamus!
+                               Lorem ipsum dolor sit, 
+                              amet consectetur adipisicing elit. Laborum, voluptates?
+                               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                               Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quos in 
+                               consequatur autem possimus dolore iste consectetur 
+                               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, praesentium?</p>
+                        </div>   
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div id="contactus" class="controll card">    
+                        <div class="card-body">
+                                Contact Us
+                            <ul class="num-contact list-inline list-group">
+                                <li class="list-group-item-text">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>00972598532665</span>
+                                </li>
+                                <li class="list-group-item-text">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>00972598532665</span>
+                                </li>
+                            </ul>
+                         
+                            <br><br>
+                            <p>To receive our latest prescriptions, enter your email address </p><br>
+                            <form action="/recievePrescription" method="POST" class="text-center">
+                                <div class="form-group">
+                                    <input type="email" name="email" id="emailOffer" placeholder="Email from here" class="form-control">
+                                </div>
+                                <button type="submit" id="send" class="btn btn-default">إرسال</button>
+                            </form>
+                        </div>     
+                    </div>
+                  </div>
+              </div>
+            </section>
+        </div>
+    </main>

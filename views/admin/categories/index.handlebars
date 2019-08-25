@@ -1,0 +1,85 @@
+<section class="content-header">
+    <h1>
+    Categories
+    <small>here view all prescriptions categories</small>
+    </h1>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Doctors</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box-header"> <!-- /.box-header -->
+                            <h3 class="box-title">Form Add New Category</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="category">Category Name</label>
+                                <input type="text"  class="form-control" name="category" id="category" placeholder="enter category" required>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="button" id="buttonAdd" class="btn btn-primary">Add Category</button>
+                        </div><!-- /.box-body -->
+                <!-- /.box -->
+                    </div> 
+                    {{!-- end md 6 --}}
+                    <div class="col-md-6">
+                        <div class="box-header"> <!-- /.box-header -->
+                            <h3 class="box-title">Table Category</h3>
+                        </div>
+                        <div class="box-body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Category</th>
+                                        <th>Date</th>
+                                        <th>Settings</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody id="bodyCategory">
+                                    {{#if categories}}
+                                    {{#each categories}}
+                                    <tr id="delete_{{id}}">
+                                        <td>{{id}}</td>
+                                        <td id="edit_{{id}}" style="position: relative;"> {{category}}  </td>
+                                        <td> {{created}} </td>
+                                        <td>
+                                            <i id="editCategory" data-target="{{id}}" data-key="{{category}}" class="fa fa-edit text-info" aria-hidden="true"></i>
+                                            <i id="deleteCategory" onclick="deleteCategory('{{id}}')" class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                    {{else}}
+                                   <tr id="categoryNotFound"><td>No category found , please add</td></tr>
+                                    {{/if}}
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+                    {{!-- end md 6 --}}
+                </div>
+                {{!-- end row --}}
+            </div>
+        <!-- /.col -->
+        </div>
+    </div>
+    
+<!-- /.row -->
+</section>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/ajax/category/edit.js"></script>
+<script src="/ajax/category/delete.js"></script>
+
+<script src="/ajax/category/add.js"></script>

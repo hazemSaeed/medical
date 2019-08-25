@@ -1,0 +1,16 @@
+    <div id="modal-closeAccount" class="modal-custom" data-iziModal-group="grupo6">
+        <button data-iziModal-close class="icon-close"><i class="fa fa-close"></i></button>
+        <header>
+            <h2>Confirm Close Account</h2>
+        </header>
+        <section style="padding: 20px !important;padding-top: 0 !important;">
+           <form action="/settings/delete/{{user.id}}" method="post">
+                <h3>Are you sure you want to close your account</h3>
+                <footer>
+                    <button data-iziModal-close>Cancel</button>
+                    <button type="submit" class="submit" >Confirm</button>            
+                </footer>
+          </form>   
+        </section>
+    </div>
+    

@@ -1,0 +1,19 @@
+<header id="header">
+    <div class="container">
+        <div class="row text-center">
+            <h3>Search For Medical Care</h3>
+            <form action="/searchDisease" method="GET" novalidate>
+                <div class="search-product">
+                    <input type="search" placeholder="Search Here" name="disease">
+                    <img src="/uploads/bg-home/search.png" alt="">
+                </div>
+            </form>
+            {{#if user}}
+                {{null}}
+            {{else}}
+            <button data-izimodal-open="#modal-login" class="btn btn-default">Login</button>
+            <button  data-izimodal-open="#modal-register" class="btn btn-default">Register</button>
+            {{/if}}
+        </div>
+    </div>
+</header>

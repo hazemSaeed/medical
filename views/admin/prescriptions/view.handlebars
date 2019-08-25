@@ -1,0 +1,20 @@
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        View Book
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Book</li>
+        <li class="active">View Book</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        {{!-- <iframe src="http://docs.google.com/gview?url=http://localhost:4500/public/uploads/1.pdf&embedded=true" 
+style="width:600px; height:500px;" frameborder="0"></iframe> --}}
+<embed src="http://localhost:4500/uploads/books/{{book.pathBook}}" width="100%" height="500px" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">
+    </section>
+    <!-- /.content -->

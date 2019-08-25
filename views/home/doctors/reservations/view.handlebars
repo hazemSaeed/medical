@@ -1,0 +1,31 @@
+<div class="container">
+{{#if reservation}}
+  <div id="header1">
+    <h1 class="text-center">View Reservation</h1>
+  </div>
+  <br><br>
+  <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-4">
+                  <div class="card-body">
+                    <img style="height:220px;width: 100%;" class="img-responsive img-rounded img-thumbnail bg-primary" src="/uploads/users/{{reservation.user.image}}" alt="">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <i id="removeReservation" data-id="{{reservation.id}}" class="pull-right text-danger button-exit fa fa-times fa-2x" title="Delete Reservation" aria-hidden="true"></i>  
+                        <h2>{{reservation.user.username}}</h2>
+                        <p class="o">Subject : <b>{{reservation.subject}}</b></p>
+                        <p style="white-space: pre-line;">Message : <b>{{reservation.message}}</b></p>
+                        <p>Date : <b>{{generateDate reservation.date 'DD/MM/YYYY'}}</b> From <b>{{reservation.dateFrom}}</b> To <b>{{reservation.dateTo}}</b> </p>
+                        <p>Created : <b>{{generateDate reservation.created 'DD/MM/YYYY hh:mm a'}}</b></p>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  {{/if}}
+</div>

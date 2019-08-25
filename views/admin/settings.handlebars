@@ -1,0 +1,142 @@
+ <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Settings
+        <small>here displays settings</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>Settings</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+                {{#if errors}}
+            <div class="box-body">
+              {{#each errors}}
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                {{message}}
+              </div>
+              {{/each}}
+            </div>
+          {{/if}}
+        <div class="row">
+          <div class="col-md-6">
+             <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Settings Profile</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form action="/admin/settings/{{user.id}}" method="POST" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" readonly value="{{user.username}}" class="form-control" id="username" name="username">
+                </div>
+
+                <div class="form-group">
+                  <label for="price">Email</label>
+                  <input type="email" class="form-control" id="email" readonly value="{{user.email}}" name="email" placeholder="Enter Email">
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" class="form-control" {{#if user.phone}} value="{{user.phone}}" {{/if}}  id="phone" name="phone" placeholder="Your Phone">
+                </div>
+
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <input type="text" class="form-control" {{#if user.country}} value="{{user.country}}" {{/if}} id="location" name="location" placeholder="Your Country">
+                </div>
+                
+                <div class="form-group">
+                  <label for="image">Upload User Image</label>
+                  <input type="file" id="image" accept="image/*" name="image" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" name="description" id="description" placeholder="Description">
+                    {{#if user.description}} {{user.description}} {{/if}}
+                  </textarea>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+          </div>
+          <div class="col-sm-6">
+            <!-- general form elements -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Settings General</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form" action="/admin/settings/state/:id" method="POST">
+                <div class="box-body">
+                  <label for="">Status Website</label>
+                  <div class="custom-control custom-radio">
+                    
+                    <input type="radio" {{#if user.stateWebsite}}{{#check user.stateWebsite 'disable'}}{{/check}}{{/if}} id="customRadio1" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio1">Disable</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" {{#if user.stateWebsite}}{{#check user.stateWebsite 'enable'}}{{/check}}{{/if}} id="customRadio3" name="customRadio" class="custom-control-input">
+                    
+                    <label class="custom-control-label" for="customRadio3">Enable</label>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.box -->
+
+            <!-- general form elements -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Change Password</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form" action="/admin/settings/changePassword/{{user.id}}" method="POST">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="oldpassword">Old Password</label>
+                    <input type="password" class="form-control" id="oldpassword" name="oldpassword">
+                  </div>
+                  <div class="form-group">
+                    <label for="newpassword">New Password</label>
+                    <input type="password" class="form-control" id="newpassword" name="newpassword">
+                  </div>
+                  <div class="form-group">
+                    <label for="verifypassword">Verify Password</label>
+                    <input type="password" class="form-control" id="verifypassword" name="verifypassword">
+                  </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.box -->
+          </div>
+        </div>
+    </section>
+    <!-- /.content -->
+    

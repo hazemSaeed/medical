@@ -1,0 +1,135 @@
+ <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Edit Doctor
+        <small>here displays update doctor</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/admin/doctors"> Doctors</a></li>
+        <li class="active">Edit Doctor</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+          <div class="col-md-8">
+             <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Settings Profile</h3>
+            </div>
+            <!-- /.box-header -->
+          {{#if errors}}
+            <div class="box-body">
+              {{#each errors}}
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                {{message}}
+              </div>
+              {{/each}}
+            </div>
+          {{/if}}
+            <!-- form start -->
+            <form action="/admin/doctors/edit/{{editUser.id}}" method="POST">
+              <div class="box-body">
+                <div class="form-group">
+                  <label>Status</label>
+                  <select class="form-control" name="status">
+                    {{#select editUser.status}}
+                    <option value="approved">Approved</option>
+                    <option value="pending">Pending</option>
+                    <option value="denied">Denied</option>
+                    {{/select}}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" readonly value="{{editUser.username}}" class="form-control" id="username" name="username">
+                </div>
+
+                <div class="form-group">
+                  <label for="price">Email</label>
+                  <input type="email" readonly class="form-control" id="email" readonly value="{{editUser.email}}" name="email" placeholder="Enter Email">
+                </div>
+                <div class="form-group">
+                  <label for="speciality">Speciality</label>
+                  <input type="text" readonly class="form-control" id="speciality" readonly value="{{editUser.speciality}}" name="speciality" placeholder="Enter Speciality">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" readonly class="form-control" {{#if editUser.phone}} value="{{editUser.phone}}" {{/if}}  id="phone" name="phone" placeholder="Your Phone">
+                </div>
+
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <input type="text" readonly class="form-control" {{#if editUser.country}} value="{{editUser.country}}" {{/if}} id="location" name="location" placeholder="Your Country">
+                </div>
+                <br>
+                <div class="row" style="display: flex;justify-content: center;align-items: center;">
+                  <div class="col-sm-2">
+                    <img class="img-bordered img-lg img-responsive" src="/uploads/users/{{editUser.image}}" alt="">
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="form-group">
+                      <label for="image">Update Prescription Image</label>
+                      <input type="file" readonly name="image" accept="image/*" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                {{#if editUser.attachment}}
+                <br>
+                <div class="row" style="display: flex;justify-content: center;align-items: center;">
+                      
+                      <div class="col-sm-3">
+                          <img class="img-bordered img-lg img-responsive" style="height: 200px; width:100%;" src="/uploads/attachments/{{editUser.attachment}}" alt="">
+                      </div>
+                     
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                        <a type="button" href="/admin/doctors/download/{{editUser.attachment}}" class="btn btn-default">Download</a>
+                        </div>
+                      </div>
+                     
+                  </div>
+                    {{/if}}
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea rows="10" disabled class="form-control" name="description" id="description" placeholder="Description">
+                    {{#if editUser.description}} {{editUser.description}} {{/if}}
+                  </textarea>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Edit Profile</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+          </div>
+        </div>
+    </section>
+    <!-- /.content -->
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script>
+      $('#downloadFile').on('click', function(){
+        const img = $(this).data('attach');
+        const id = $(this).data('id');
+        $.ajax({
+          type: 'GET',
+          url: `/admin/doctors/download/${img}`,
+          success: function(){
+            console.log('success')
+          },
+          fail: function(){
+            console.log('error')
+          }
+        })
+      })
+    </script>

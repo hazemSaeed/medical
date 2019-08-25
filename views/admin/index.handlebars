@@ -1,0 +1,214 @@
+ <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Medical Care Control Panel
+      </h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> Home</li>
+      </ol>
+    </section>
+    <br>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+    
+      <div class="row">
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{countPrescription}}</h3>
+              <p>Medical Prescriptions</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-plus-square"></i>
+            </div>
+            <a href="/admin/prescriptions" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{countDoctor}}</h3>
+
+              <p>Doctor Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-user-md"></i>
+            </div>
+            <a href="/admin/doctors" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>{{countUser}}</h3>
+              <p>User Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="/admin/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+
+<br><br>
+<div class="row">
+  <div class="col-md-6">
+    <!-- USERS LIST -->
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h3 class="box-title">Latest Users</h3>
+
+        <div class="box-tools pull-right">
+          <span class="label label-danger">8 New Users</span>
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body no-padding">
+        <ul class="users-list clearfix">
+          {{#each users}}
+          <li>
+            <img style="max-width: 70%; height: 80px;" src="/uploads/users/{{image}}" alt="User Image">
+            <a class="users-list-name" href="javascript:void(0)">{{username}}</a>
+            <span class="users-list-date">{{generateDate created 'YYYY/MM/DD'}}</span>
+          </li>
+          {{/each}}
+        </ul>
+        <!-- /.users-list -->
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer text-center">
+        <a href="/admin/users" class="uppercase">View All Users</a>
+      </div>
+      <!-- /.box-footer -->
+    </div>
+    <!--/.box -->
+  </div>
+  <div class="col-md-6">
+    <!-- USERS LIST -->
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h3 class="box-title">Latest Doctors</h3>
+
+        <div class="box-tools pull-right">
+          <span class="label label-danger">8 New Doctors</span>
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body no-padding">
+        <ul class="users-list clearfix">
+          {{#each doctors}}
+          <li>
+            <img style="max-width: 70%; height: 80px" src="/uploads/users/{{image}}" alt="User Image">
+            <a class="users-list-name" target="_blank" href="/doctors/profile/{{id}}">{{username}}</a>
+            <span class="users-list-date">{{generateDate created 'YYYY/MM/DD'}}</span>
+          </li>
+          {{/each}}
+        </ul>
+        <!-- /.users-list -->
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer text-center">
+        <a href="/admin/doctors" class="uppercase">View All Doctors</a>
+      </div>
+      <!-- /.box-footer -->
+    </div>
+    <!--/.box -->
+  </div>
+</div>
+
+<div class="row">
+  <section class="col-lg-6">
+    <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Recently Added Prescriptions</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <ul class="products-list product-list-in-box">
+                {{#each prescriptions}}
+                <li class="item">
+                  <div class="product-img">
+                    <img src="/uploads/bg-precreption/{{image}}" alt="Product Image">
+                  </div>
+                  <div class="product-info">
+                    <a target="_blank" href="/prescriptions/view/{{id}}" class="product-title">{{title}}
+                      <span class="label label-warning pull-right">{{generateDate published 'YYYY/MM/DD'}}</span></a>
+                    <span class="product-description">
+                      {{description}}
+                    </span>
+                  </div>
+                </li>
+                <!-- /.item -->
+               {{/each}}
+              </ul>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-center">
+              <a href="/admin/prescriptions" class="uppercase">View All Prescriptions</a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+  </section>
+    <section class="col-lg-6 connectedSortable ui-sortable">
+    {{!-- Calender --}}
+    <div class="box box-solid bg-green-gradient">
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+              <i class="fa fa-calendar"></i>
+
+              <h3 class="box-title">Calendar</h3>
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <!-- button with a dropdown -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i></button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#">Add new event</a></li>
+                    <li><a href="#">Clear events</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">View calendar</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+              <!-- /. tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding" style="">
+              <!--The calendar -->
+              <div id="calendar" style="width: 100%"><div class="datepicker datepicker-inline"><div class="datepicker-days" style=""><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">August 2019</th><th class="next">»</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="old day" data-date="1564272000000">28</td><td class="old day" data-date="1564358400000">29</td><td class="old day" data-date="1564444800000">30</td><td class="old day" data-date="1564531200000">31</td><td class="day" data-date="1564617600000">1</td><td class="day" data-date="1564704000000">2</td><td class="day" data-date="1564790400000">3</td></tr><tr><td class="day" data-date="1564876800000">4</td><td class="day" data-date="1564963200000">5</td><td class="day" data-date="1565049600000">6</td><td class="day" data-date="1565136000000">7</td><td class="day" data-date="1565222400000">8</td><td class="day" data-date="1565308800000">9</td><td class="day" data-date="1565395200000">10</td></tr><tr><td class="day" data-date="1565481600000">11</td><td class="day" data-date="1565568000000">12</td><td class="day" data-date="1565654400000">13</td><td class="day" data-date="1565740800000">14</td><td class="day" data-date="1565827200000">15</td><td class="day" data-date="1565913600000">16</td><td class="day" data-date="1566000000000">17</td></tr><tr><td class="day" data-date="1566086400000">18</td><td class="day" data-date="1566172800000">19</td><td class="day" data-date="1566259200000">20</td><td class="day" data-date="1566345600000">21</td><td class="day" data-date="1566432000000">22</td><td class="day" data-date="1566518400000">23</td><td class="day" data-date="1566604800000">24</td></tr><tr><td class="day" data-date="1566691200000">25</td><td class="day" data-date="1566777600000">26</td><td class="day" data-date="1566864000000">27</td><td class="day" data-date="1566950400000">28</td><td class="day" data-date="1567036800000">29</td><td class="day" data-date="1567123200000">30</td><td class="day" data-date="1567209600000">31</td></tr><tr><td class="new day" data-date="1567296000000">1</td><td class="new day" data-date="1567382400000">2</td><td class="new day" data-date="1567468800000">3</td><td class="new day" data-date="1567555200000">4</td><td class="new day" data-date="1567641600000">5</td><td class="new day" data-date="1567728000000">6</td><td class="new day" data-date="1567814400000">7</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2019</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month focused">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2010-2019</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year focused">2019</span><span class="year new">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-decades" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2000-2090</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="decade old">1990</span><span class="decade">2000</span><span class="decade focused">2010</span><span class="decade">2020</span><span class="decade">2030</span><span class="decade">2040</span><span class="decade">2050</span><span class="decade">2060</span><span class="decade">2070</span><span class="decade">2080</span><span class="decade">2090</span><span class="decade new">2100</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-centuries" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2000-2900</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="century old">1900</span><span class="century focused">2000</span><span class="century">2100</span><span class="century">2200</span><span class="century">2300</span><span class="century">2400</span><span class="century">2500</span><span class="century">2600</span><span class="century">2700</span><span class="century">2800</span><span class="century">2900</span><span class="century new">3000</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div></div></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  </section>
+</div>
+
+
+</section>
+<!-- /.section content-->   

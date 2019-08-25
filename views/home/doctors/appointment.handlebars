@@ -1,0 +1,94 @@
+<div class="container">
+			<div class="row animate-box fadeInUp animated-fast">
+				<div class="col-md-6 col-md-offset-3 text-center qbootstrap-heading">
+					<h2>Make an Appointment</h2>
+					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+				</div>
+			</div>
+            <br><br>
+			{{#if errors}}
+            <div class="box-body">
+              {{#each errors}}
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                {{message}}
+              </div>
+              {{/each}}
+            </div>
+          {{/if}}
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="text-center">Request Appointment</h3>
+							<hr>
+							<form action="/doctors/makeReservation" method="POST" class="text-left appointment-wrap animate-box fadeInUp animated-fast">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="username">Username</label>
+										<input readonly type="text" id="username" name="username" {{#if user}} value="{{user.username}}" {{/if}} class="form-control" placeholder="Your Name">
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="email">Email</label>
+										<input readonly type="text" id="email" name="email" class="form-control" {{#if user}} value="{{user.email}}" {{/if}} placeholder="Your email address">
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="phone">Contact Number</label>
+										<input readonly type="text" id="phone" name="phone"  class="form-control" {{#if user}} value="{{user.phone}}" {{/if}} placeholder="Your Contact Number">
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="doctor">Doctor Name</label>
+										<input required type="text" id="findDoctor" name="doctor"  class="form-control" placeholder="Doctor Name">
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="date">Date</label>
+										<input required type="date" id="date" name="date" value="{{date}}"  class="form-control" placeholder="Date Appointment">
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-md-6">
+										<label for="dateFrom">Date From</label>
+										<input required type="time" value="{{from}}" id="dateFrom" name="dateFrom"  class="form-control">
+									</div>
+									<div class="col-md-6">
+										<label for="dateTo">Date To</label>
+										<input required type="time" value="{{to}}" id="dateTo" name="dateTo"  class="form-control">
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="subject">Subject</label>
+										<textarea required name="subject" id="subject" cols="30" rows="10" class="form-control" style="text-align: left" placeholder="Your Subject">{{subject}}</textarea>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="message">Message</label>
+										<textarea required name="message" id="message" cols="30" rows="10" class="form-control" style="text-align: left" placeholder="Your Message"></textarea>
+									</div>
+								</div>
+								<hr>
+								<div class="form-group text-center">
+									<input type="submit" value="Make Appointment" class="btn btn-primary">
+								</div>
+
+							</form>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
