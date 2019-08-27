@@ -21,6 +21,15 @@ const Rating = require('../../models/Rating')
 // Routes All with Layout Home
 router.all('/*', (req, res, next) => {
   req.app.locals.layout = 'home'
+  Reservation.find({doctor: req.user}).populate('user').sort({created: -1}).limit(5).then(reservations => {
+     req.app.locals.reservations = reservations || null
+  }) 
+  Reservation.countDocuments({doctor: req.user,opened: false}).then(countUnRead => {
+    req.app.locals.countUnRead = countUnRead || null
+  })
+  setTimeout(function(){
+    req.app.locals.countUnRead
+  },10)
   next()
 })
 
@@ -35,18 +44,17 @@ router.get('/', (req, res) => {
       skin_problem,
       rating_user
 
-      async.series([
+
+      async.series([ 
       function(callback){
       if(req.user){
         Rating.find({user: req.user.id}).then(userRating => {
           rating_user = userRating
-          callback(null, rating_user)
         })
       }else {
-        rating_user = []
-        callback(null, rating_user)
+        rating_user = [] 
       }  
-        
+      callback(null, rating_user)
       },
       function(callback){
         Prescription.find({}).sort({published: -1}).limit(8).then(latestPrescriptions => {
@@ -155,8 +163,8 @@ router.get('/profile', userAuth, (req,res) => {
     }
     
     else {
-      Appointment.find({doctor: user.id}).then(appointments => {
-        res.render('home/doctors/profile',{user: user, appointments: appointments})
+      Appointment.find({doctor: user.id}).then(appointments => {  
+        res.render('home/doctors/profile',{user: user, appointments: appointments})   
     })
     }
     
@@ -212,6 +220,41 @@ router.post('/reservationsDoctor', (req, res) => {
   })
 })
 
+router.get('/reservations/:idDoctor',userAuth , (req, res) => {
+  const idDoctor = req.params.idDoctor
+  User.findById(idDoctor).then(doctor => {
+    if(!doctor){
+      req.flash('error_message','this is not doctor or doctor not found')
+      res.redirect('/doctors')
+    }
+    Reservation.find({doctor: doctor.id}).sort({created: -1}).populate('user').populate('doctor').then(reservations => {
+      if(isEmpty(reservations)) {
+        req.flash('error_message','reservations not found')
+        res.redirect('/doctors')
+      }
+   
+      if(req.user && req.user.id === doctor.id){
+        reservations.forEach(reservation => {
+          reservation.opened = true
+          reservation.save()
+        })
+          res.render('home/doctors/reservations/index',{allReservations: reservations})
+      }else {
+        req.flash('error_message','not authorize to view this reservations')
+        res.redirect('/doctors/profile/'+doctor._id)
+      }
+
+    }).catch(err => {
+      req.flash('error_message','reservations not found ' + err)
+      res.redirect('/doctors')
+    })
+  }).catch(err => {
+    req.flash('error_message','this is not doctor or doctor not found')
+    res.redirect('/doctors')
+  })
+  
+})
+
 router.get('/reservations/view/:idDoctor/:idReservation',userAuth , (req, res) => {
   const idDoctor = req.params.idDoctor
   const idReservation = req.params.idReservation
@@ -221,17 +264,17 @@ router.get('/reservations/view/:idDoctor/:idReservation',userAuth , (req, res) =
       req.flash('error_message','this is not doctor or doctor not found')
       res.redirect('/doctors')
     }
-    console.log(doctor);
-    
     Reservation.findById(idReservation).populate('user').populate('doctor').then(reservation => {
       if(!reservation) {
         req.flash('error_message','reservation not found')
         res.redirect('/doctors')
       }
-      console.log(reservation);
-      
+
       if(req.user.id === reservation.doctor.id || req.user.id === reservation.user.id){
-        res.render('home/doctors/reservations/view',{reservation: reservation})
+        reservation.opened = true
+        reservation.save().then(reservationSaved => {
+          res.render('home/doctors/reservations/view',{reservation: reservationSaved})
+        })
       }else {
         req.flash('error_message','not authorize to view this reservation')
         res.redirect('/doctors/profile/'+reservation.doctor._id)
@@ -257,6 +300,23 @@ router.post('/reservation/delete', (req, res) => {
   }
 })
 
+router.post('/reservations/readAll', (req, res) => {
+  if(req.user && req.user.id === req.body.id){
+    Reservation.find({doctor: req.user.id}).then(reservations => {
+      reservations.forEach(reservation => {
+        reservation.opened = true
+        reservation.save()
+      })
+      Reservation.countDocuments({doctor: req.user,opened: false}).then(countUnRead => {
+        req.app.locals.countUnRead = null
+        setTimeout(function(){
+          req.app.locals.countUnRead = null
+        },10)
+        res.send({count: 0})
+      })
+    })
+  }
+})
 // Route Policy
 router.get('/policy', (req, res) => {
   res.render('home/policy')
@@ -684,7 +744,7 @@ router.post('/admin/login', (req, res, next) => {
 // Route Post Login For User
 router.post('/login', (req, res, next) => {
   passport.authenticate('user', {
-    successRedirect: '/profile',
+    successRedirect: '/',
     failureRedirect: '/',
     failureFlash: true
   })(req, res, next);

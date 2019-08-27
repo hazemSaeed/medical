@@ -23,7 +23,7 @@
                 <div class="profile-image">
                     <img src="/uploads/users/{{doctor.image}}" alt="Doctor Profile">
                 </div>
-
+                {{#if doctor.isActive}}
                 <h5 class="mt20"><b>I am avaliable every day</b></h5>
                 <table class="table table-striped">
                     <tbody>
@@ -36,6 +36,8 @@
                     {{/each}}
                     {{/if}}
                 </tbody></table>
+                {{/if}}
+                <br>
                 <a href="/doctors/appointment" class="btn btn-primary">Request Appointment</a>
             </div>
             <div class="col-md-8">
@@ -110,7 +112,16 @@
                 <hr>
                 <h2>Make Appointement</h2>
                 <br>
+                {{#if doctor.isActive}}
                 <div id="calendar"></div>
+                {{else}}
+                <div class="box-body">
+                    <br>
+                    <div class="alert alert-danger" role="alert">
+                        This doctor account is not approved
+                    </div>
+                </div>
+                {{/if}}
             </div>
         </div>
     </div>
@@ -126,6 +137,7 @@
                 <h5 class="mt20"><b>I am avaliable every day</b></h5>
                 <table class="table table-striped">
                     <tbody>
+                    {{#if user.isActive}}    
                     {{#if appointments}}
                     {{#each appointments}}
                     <tr>
@@ -133,6 +145,9 @@
                        {{#if isHoliday}} <td>Holiday</td> {{else}}<td>{{generateDate from 'hh:mm a'}} – {{generateDate to 'hh:mm a'}} </td> {{/if}}
                     </tr>
                     {{/each}}
+                    {{/if}}
+                    {{else}}
+                    <tr>approve your account</tr>
                     {{/if}}
                 </tbody></table>
                 <a href="/doctors/appointment" class="btn btn-primary">Request Appointment</a>
@@ -192,7 +207,16 @@
                 <hr>
                 <h2>Make Appointement</h2>
                 <br>
+                {{#if user.isActive}}
                 <div id="calendar"></div>
+                {{else}}
+                    <div class="box-body">
+                        <br>
+                        <div class="alert alert-danger" role="alert">
+                            please add certificate to approve your account 
+                        </div>
+                    </div>
+                {{/if}}
             </div>
         </div>
     </div>

@@ -33,6 +33,9 @@ router.get('/download/:img',(req, res) => {
 router.post('/edit/:id', (req,res) => {
   User.findById(req.params.id).then(user => {
     user.status = req.body.status
+    if(req.body.status === 'approved'){
+      user.isActive = true
+    }
     user.save().then(userUpdated => {
       req.flash('success_message',`Doctor ${userUpdated.email} was updated status successfully`);
       res.redirect('/admin/doctors')

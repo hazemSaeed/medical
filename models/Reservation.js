@@ -30,6 +30,10 @@ const ReservationSchema = new Schema({
     message: {
         type: String
     },
+    opened: {
+        type: Boolean,
+        default: false 
+    },
     created: { 
         type: Date, 
         default: Date.now()

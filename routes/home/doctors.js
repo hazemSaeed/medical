@@ -147,6 +147,10 @@ router.post('/makeReservation', userAuth ,(req, res) => {
                     req.flash('error_message','doctor not found')
                     res.redirect('/doctors/appointment')
                 }
+                if(!doctor.isActive){
+                    req.flash('error_message','This doctor is not approved his account')
+                    res.redirect('/doctors/appointment') 
+                }
 
                 console.log('user', user)
                 console.log('doctor', doctor)

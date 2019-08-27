@@ -176,60 +176,46 @@
         {{#if user.isDoctor}}
         <ul class="nav navbar-nav navbar-right notification">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <a href="#" id="readReservations" data-id="{{user.id}}" class="dropdown-toggle text-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bell" aria-hidden="true"></i>
-                    <span class="badge badge-pill badge-danger">42</span>
+                    <span id="countReservations" class="badge badge-pill badge-danger">{{countUnRead}}</span>
                     <span class="sr-only">unread messages</span>
                 </a>
                 <ul class="dropdown-menu notify-drop">
                     <div class="notify-drop-title">
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-6">Bildirimler (<b>2</b>)</div>
-                            <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">Notification</div>
                         </div>
                     </div>
                     <!-- end notify title -->
                     <!-- notify content -->
                     <div class="drop-content">
-                        <li>
-                            <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                            <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                            
+                      {{#if reservations}}
+                      {{#each reservations}}
+                        <li class="">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                              <div class="notify-img">
+                                <img width="100%" src="/uploads/users/{{this.user.image}}" alt="{{this.user.image}}">
+                              </div>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
+                              <a href="javascript:void(0)">{{this.user.username}}</a> 
+                              <span>{{subject}}</span>
+                              <a href="/reservations/view/{{doctor}}/{{id}}" class="rIcon">
+                                <i class="fa fa-dot-circle-o"></i>
+                              </a>   
                             <hr>
-                            <p class="time">Şimdi</p>
+                            <p style="text-overflow: ellipsis;width: 180px;overflow: hidden;white-space: nowrap;">{{message}}</p>
+                            <p class="time">{{generateDate created 'YYYY/MM/DD'}}</p>
+                            <p class="time">From : {{dateFrom}}</p>
+                            <p class="time">To : {{dateTo}}</p>
                             </div>
                         </li>
-                        <li>
-                            <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                            <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                            <p>Lorem ipsum sit dolor amet consilium.</p>
-                            <p class="time">1 Saat önce</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                            <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                            <p>Lorem ipsum sit dolor amet consilium.</p>
-                            <p class="time">29 Dakika önce</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                            <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                            <p>Lorem ipsum sit dolor amet consilium.</p>
-                            <p class="time">Dün 13:18</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                            <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                            <p>Lorem ipsum sit dolor amet consilium.</p>
-                            <p class="time">2 Hafta önce</p>
-                            </div>
-                        </li>
+                      {{/each}}  
+                      {{/if}}
                     </div>
                     <div class="notify-drop-footer text-center">
-                        <a href=""><i class="fa fa-eye"></i> Tümünü Göster</a>
+                        <a href="/reservations/{{user.id}}"><i class="fa fa-eye"></i> View All</a>
                     </div>
                 </ul>
             </li>

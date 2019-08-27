@@ -1,0 +1,33 @@
+<div class="container">
+{{#if allReservations}}
+  <div id="header1">
+    <h1 class="text-center">All Reservation</h1>
+  </div>
+  <br><br>
+  <div class="row">
+      <div class="col-sm-12">
+          {{#each allReservations}}
+        <div class="card">
+            <div class="row">
+                <div class="col-md-4">
+                  <div class="card-body">
+                    <img style="height:220px;width: 100%;" class="img-responsive img-rounded img-thumbnail bg-primary" src="/uploads/users/{{this.user.image}}" alt="{{this.user.image}}">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <i id="removeReservation" data-id="{{id}}" class="pull-right text-danger button-exit fa fa-times fa-2x" title="Delete Reservation" aria-hidden="true"></i>  
+                        <h2>{{this.user.username}}</h2>
+                        <p class="o">Subject : <b>{{subject}}</b></p>
+                        <p style="white-space: pre-line;">Message : <b>{{message}}</b></p>
+                        <p>Date : <b>{{generateDate date 'DD/MM/YYYY'}}</b> From <b>{{dateFrom}}</b> To <b>{{dateTo}}</b> </p>
+                        <p>Created : <b>{{generateDate created 'DD/MM/YYYY hh:mm a'}}</b></p>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+      </div>
+  </div>
+  {{/if}}
+</div>

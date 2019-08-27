@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', function() {
   reservations.then((function(element) {
     var result = element.reservations.map(ele => {
       var hourFrom = ele.dateFrom.split(':')
-      var hourTo = ele.dateFrom.split(':')
+      var hourTo = ele.dateTo.split(':')
       
       startDate = new Date(ele.date)
       startDate.setHours(hourFrom[0],hourFrom[1])
@@ -615,6 +615,19 @@ $('#removeReservation').on('click', function() {
     data: {id: id},
     success: function(data){
       $(location).attr('href', '/doctors/profile/'+data.reservation.doctor)
+    }
+  })
+})
+
+// Read Latest Reservations & Mark read
+$('#readReservations').on('click', function() {
+  const id = $(this).data("id")
+  $.ajax({
+    type: "POST",
+    url: "/reservations/readAll/",
+    data: {id: id},
+    success: function(data){
+      $('#countReservations').remove()
     }
   })
 })
