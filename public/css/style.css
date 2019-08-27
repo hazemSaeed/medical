@@ -352,7 +352,6 @@ div.scrollmenu .active {
     font-size: 15px;
     margin: 0;
     margin-bottom: 2px;
-    color: rgb(97, 97, 97);
     font-weight: 900
 }
 .slider-image a {
@@ -1356,6 +1355,7 @@ div.scrollmenu .active {
 .card.card-prescription {
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
     transition: transform .3s;
+    height: 420px;
 }
 .card.card-prescription:hover {
     transform: translateY(-1.5rem) scale(1.03);
@@ -1382,14 +1382,6 @@ div.scrollmenu .active {
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 }
-/* .card.card-prescription .card-text::after{
-    content: '...';
-    font-size: 18px;
-    font-weight: 900;
-    position: absolute;
-    right: 5px;
-    bottom: 0;
-}  */
 .card .card-body {
     padding: 20px;
     position: relative;
