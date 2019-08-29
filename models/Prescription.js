@@ -24,7 +24,7 @@ const PrescriptionSchema = new Schema({
     },
     published: { 
         type: Date, 
-        default: Date.now()
+        default: Date.now
     }
 
 })

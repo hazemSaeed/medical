@@ -25,21 +25,11 @@
                           {{#each latestPrescriptions}}
                           <li>
                               <div class="lib-img">
-                                  {{#if ../user}} 
-                              <div 
-                                class="views" 
-                                data-user="{{../user.id}}" 
-                                data-target="{{id}}">
-                                {{rating}} 
-                                <i class="fa fa-heart {{rated ../rating_user id}}"></i>
-                                </div>
-                              {{else}}
                                 <div 
                                   class="likes">
                                   {{rating}} 
                                   <i class="fa fa-heart"></i>
                                 </div>
-                              {{/if}}
                                   <img src="uploads/bg-precreption/{{image}}" alt="">
                                   <div class="product-type">
                                       <h4>{{title}}</h4>

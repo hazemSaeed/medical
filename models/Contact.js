@@ -9,7 +9,7 @@ const ContactSchema = new Schema({
     },
     created: { 
         type: String, 
-        default: Date.now()
+        default: Date.now
     }
 
 })
