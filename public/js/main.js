@@ -563,14 +563,12 @@ document.addEventListener('DOMContentLoaded', function() {
       endDate = endDate.toISOString()
       const obj = {
         title: ele.subject,
-        url: '/reservations/view/'+ele.doctor+'/'+ele._id,
+        url: '/reservations/view/'+ele.doctor._id+'/'+ele._id,
         start: startDate,
         end: endDate,
       }
-
       return obj
     })
-
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
@@ -587,7 +585,7 @@ document.addEventListener('DOMContentLoaded', function() {
       select: function(arg) {
         var title = prompt('Enter Subject:');
         if (title) {
-          $(location).attr('href',`/doctors/appointment?subject=${title}&start=${arg.start.toISOString()}&end=${arg.end.toISOString()}`)
+          $(location).attr('href',`/doctors/appointment?doctor=${element.reservations[0].doctor.username}&subject=${title}&start=${arg.start.toISOString()}&end=${arg.end.toISOString()}`)
           calendar.addEvent({
             title: title,
             start: arg.start,

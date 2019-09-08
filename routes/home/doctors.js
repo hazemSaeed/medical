@@ -51,9 +51,12 @@ router.post('/get', (req, res)=> {
 })
 
 router.get('/appointment', userAuth, (req,res) => {
-    let subject = '',dateFrom = '',dateTo = '',to = '',from = '', date= ''
+    let subject = '',dateFrom = '',dateTo = '',to = '',from = '', date= '', doctor= ''
     if(req.query.subject){
         subject = req.query.subject
+    }
+    if(req.query.doctor){
+        doctor = req.query.doctor
     }
     if(req.query.start){
         dateFrom = new Date(req.query.start)
@@ -64,7 +67,7 @@ router.get('/appointment', userAuth, (req,res) => {
         dateTo = new Date(req.query.end)
         to = moment(dateTo).format('hh:mm')
     }
-    res.render('home/doctors/appointment', {subject: subject, date: date, from: from, to: to})
+    res.render('home/doctors/appointment', {subject: subject, date: date, from: from, to: to, doctor: doctor})
 })
 
 router.post('/profile/contactDoctor', (req, res) => {
@@ -208,11 +211,11 @@ function makeReservation(req, res, doctor, user) {
         message: req.body.message || ''
     })
     
-    console.log('newReservation', newReservation)
+    console.log('newReservation', doctor.id)
     
     newReservation.save().then(reservationSaved => {
         req.flash('success_message',`Reservation ${reservationSaved.id} is added successfully, please review Dr ${doctor.username} profile`)
-        res.redirect('/doctors/appointment')
+        res.redirect(`/doctors/profile/${doctor.id}`)
     }).catch(err => {
         req.flash('error_message','error added '+ err)
         res.redirect('/doctors/appointment')

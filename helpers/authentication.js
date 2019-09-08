@@ -13,7 +13,7 @@ module.exports = {
             if (req.user && req.user.isAdmin === true)
               next()
             else
-              res.send(401, 'Unauthorized')
+              res.status(401).send('Unauthorized')
           }
         ]
       }

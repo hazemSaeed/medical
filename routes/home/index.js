@@ -207,7 +207,7 @@ router.get('/settings', userAuth, (req,res) => {
 
 router.post('/reservationsDoctor', (req, res) => {
   const id = req.body.id 
-  Reservation.find({doctor: id}).then(reservations => {
+  Reservation.find({doctor: id}).populate('doctor').then(reservations => {
     console.log(reservations);
     res.send({reservations: reservations})
   }).catch(err => {
